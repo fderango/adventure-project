@@ -1,5 +1,9 @@
 rooms = [{"name":"entranceway", "msg":"","egg":True,"basket":False},
-         {""}}]
+         {"name":"kitchen","msg":"", "egg":True, "basket":False},
+         {"name":"hallway", "msg":"", "egg":True, "basket":False},
+         {"name":"diningroom", "msg":"", "egg":True, "basket":False},
+         {"name":"livingroom", "msg":"", "egg":True, "basket":False}]
+
 bunny = {"location":0,"basket":False,"eggs":0}
 gameover = False
 def msg(room):
@@ -8,6 +12,7 @@ def msg(room):
 	else:
 		return room['msg']
 
+		
 def get_choice(room,dir):
 	if dir == 'N':
 		choice = 0
