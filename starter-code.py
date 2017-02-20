@@ -1,3 +1,5 @@
+rooms = [{"name":"entranceway", "msg":"","egg":True,"basket":False},
+         {""}}]
 def msg(room):
 	if room['msg'] == '': #There is no custom message
 		return 'You have entered the ' + room['name']
