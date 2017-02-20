@@ -1,9 +1,9 @@
 
 
 rooms = [{"name":"entranceway", "msg":"","egg":True,"basket":False},
-         {"name":"kitchen","msg":"", "egg":True, "basket":False},
          {"name":"hallway", "msg":"", "egg":True, "basket":False},
-         {"name":"diningroom", "msg":"", "egg":True, "basket":False},
+         {"name":"kitchen","msg":"", "egg":False, "basket":False},
+         {"name":"diningroom", "msg":"", "egg":False, "basket":True},
          {"name":"livingroom", "msg":"", "egg":True, "basket":False}]
 
 bunny = {"location":0,"basket":False,"eggs":0}
@@ -54,11 +54,16 @@ def main():
 		userinput = input("Pick a direction. Type 'HELP' for help.")
 		new_room = get_choice(bunny["location"], userinput)
 		if new_room == -1:
-			print("invalid input")
+			print("Invalid input, try again")
 		else:
 			bunny["location"] = room
 			if room["basket"]:
 				print("You got the basket")
 				bunny["basket"] = True
 				room["basket"] = False
-			if room["eggs"]:
+			if room["egg"]:
+				print("There is an egg in this room! You picked it up")
+				bunny["eggs"] += 1
+				room["egg"] = False
+		if bunny["eggs"] == 3:
+			gameover = True
