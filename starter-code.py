@@ -1,13 +1,4 @@
 
-
-rooms = [{"name":"entranceway", "msg":"","egg":True,"basket":False},
-         {"name":"hallway", "msg":"", "egg":True, "basket":False},
-         {"name":"kitchen","msg":"", "egg":False, "basket":False},
-         {"name":"diningroom", "msg":"", "egg":False, "basket":True},
-         {"name":"livingroom", "msg":"", "egg":True, "basket":False}]
-
-bunny = {"location":0,"basket":False,"eggs":0}
-gameover = False
 def msg(room):
 	if room['msg'] == '': #There is no custom message
 		return 'You have entered the ' + room['name']
@@ -16,7 +7,7 @@ def msg(room):
 
 
 def get_choice(room,dir):
-	if dir="HELP":
+	if dir=="HELP":
 		help()
 		return room
 	elif dir == 'N':
@@ -30,14 +21,13 @@ def get_choice(room,dir):
 	else:
 		return -1
 
-	if room['directions'][choice] == 0:
+	if room['directions'][choice] == -1:
 		print("You cannot go in that direction!")
-		return room
+		return -1
 	else:
 		return room['directions'][choice]
 
 def statusupdate(bunny):
-	msg(bunny["location"])
 	if not bunny["basket"]:
 		print("You do not have the basket")
 	else:
@@ -50,20 +40,31 @@ def statusupdate(bunny):
 	#
 
 def main():
+	rooms = [{"name":"entranceway", "msg":"","egg":True,"basket":False,"directions":[2,4,-1,-1]},
+	         {"name":"hallway", "msg":"", "egg":True, "basket":False,"directions":[-1,2,-1,-1]},
+	         {"name":"kitchen","msg":"", "egg":False, "basket":False, "directions":[-1,3,0,1]},
+	         {"name":"diningroom", "msg":"", "egg":False, "basket":True, "directions":[-1,-1,4,2]},
+	         {"name":"livingroom", "msg":"", "egg":True, "basket":False, "directions":[3,-1,-1,0]}]
+
+	bunny = {"location":0,"basket":False,"eggs":0}
+	gameover = False
 	while(not gameover):
 		userinput = input("Pick a direction. Type 'HELP' for help.")
-		new_room = get_choice(bunny["location"], userinput)
+		new_room = get_choice(rooms[bunny["location"]], userinput)
 		if new_room == -1:
 			print("Invalid input, try again")
 		else:
-			bunny["location"] = room
-			if room["basket"]:
+			bunny["location"] = new_room
+			if rooms[new_room]["basket"]:
 				print("You got the basket")
 				bunny["basket"] = True
-				room["basket"] = False
-			if room["egg"]:
+				rooms[new_room]["basket"] = False
+			if rooms[new_room]["egg"]:
 				print("There is an egg in this room! You picked it up")
 				bunny["eggs"] += 1
-				room["egg"] = False
+				rooms[new_room]["egg"] = False
 		if bunny["eggs"] == 3:
+			print("you win")
 			gameover = True
+
+main()
