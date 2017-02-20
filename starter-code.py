@@ -43,10 +43,7 @@ def statusupdate(bunny):
 		eggmessage = "You have ", bunny['eggs'], "egg(s) in your basket."
 		print(eggmessage)
 
-	# if basket == True:
-	# 	print("The basket is in this room! Little Johnny is sleeping right next to it so drop your eggs and get out fast!")
-	#
-def basketeggplacement():
+def basketeggplacement(rooms):
 	myrooms = random.sample(rooms,4)
 	myrooms[0]["basket"] = True
 	myrooms[1]["egg"] = True
@@ -59,7 +56,7 @@ def main():
 	         {"name":"kitchen","msg":"", "egg":False, "basket":False, "directions":[-1,3,0,1]},
 	         {"name":"diningroom", "msg":"", "egg":False, "basket":False, "directions":[-1,-1,4,2]},
 	         {"name":"livingroom", "msg":"", "egg":False, "basket":False, "directions":[3,-1,-1,0]}]
-	basketeggplacement()
+	basketeggplacement(rooms)
 
 	bunny = {"location":0,"basket":False,"eggs":0}
 	gameover = False
