@@ -1,4 +1,4 @@
-rooms = [{"name":"entranceway", "msg":"","egg":True,"basket":False},
+rooms = [{"name":"entranceway", "msg":"","egg":True,"basket":False,'directions':[2,4,0,0]},
          {""}}]
 bunny = {"location":0,"basket":False,"eggs":0}
 gameover = False
@@ -9,7 +9,10 @@ def msg(room):
 		return room['msg']
 
 def get_choice(room,dir):
-	if dir == 'N':
+	if dir="HELP":
+		help()
+		return room
+	elif dir == 'N':
 		choice = 0
 	elif dir == 'E':
 		choice = 1
@@ -21,13 +24,22 @@ def get_choice(room,dir):
 		return -1
 
 	if room['directions'][choice] == 0:
-		return 0
-
+		print("You cannot go in that direction!")
+		return room
 	else:
-		return choice
-def statusupdate():
+		return room['directions'][choice]
+
 
 
 def main():
 	while(not gameover):
 		userinput = input("Pick a direction. Type 'HELP' for help.")
+		new_room = get_choice(bunny["location"], userinput)
+		if new_room == -1:
+			print("invalid input")
+		else:
+			bunny["location"] = room
+			if room["basket"]:
+				print("You got the basket")
+				bunny["basket"] = True
+				room["basket"] = False
