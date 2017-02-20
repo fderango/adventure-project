@@ -1,4 +1,6 @@
 
+import random
+
 def msg(room):
 	if room['msg'] == '': #There is no custom message
 		return 'You have entered the ' + room['name'] + "\n"
@@ -44,13 +46,20 @@ def statusupdate(bunny):
 	# if basket == True:
 	# 	print("The basket is in this room! Little Johnny is sleeping right next to it so drop your eggs and get out fast!")
 	#
+def basketeggplacement():
+	myrooms = random.sample(rooms,4)
+	myrooms[0]["basket"] = True
+	myrooms[1]["egg"] = True
+	myrooms[2]["egg"] = True
+	myrooms[3]["egg"] = True
 
 def main():
-	rooms = [{"name":"entranceway", "msg":"","egg":True,"basket":False,"directions":[2,4,-1,-1]},
-	         {"name":"hallway", "msg":"", "egg":True, "basket":False,"directions":[-1,2,-1,-1]},
+	rooms = [{"name":"entranceway", "msg":"","egg":False,"basket":False,"directions":[2,4,-1,-1]},
+	         {"name":"hallway", "msg":"", "egg":False, "basket":False,"directions":[-1,2,-1,-1]},
 	         {"name":"kitchen","msg":"", "egg":False, "basket":False, "directions":[-1,3,0,1]},
-	         {"name":"diningroom", "msg":"", "egg":False, "basket":True, "directions":[-1,-1,4,2]},
-	         {"name":"livingroom", "msg":"", "egg":True, "basket":False, "directions":[3,-1,-1,0]}]
+	         {"name":"diningroom", "msg":"", "egg":False, "basket":False, "directions":[-1,-1,4,2]},
+	         {"name":"livingroom", "msg":"", "egg":False, "basket":False, "directions":[3,-1,-1,0]}]
+	basketeggplacement()
 
 	bunny = {"location":0,"basket":False,"eggs":0}
 	gameover = False
