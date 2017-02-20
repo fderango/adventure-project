@@ -1,5 +1,11 @@
-rooms = [{"name":"entranceway", "msg":"","egg":True,"basket":False,'directions':[2,4,0,0]},
-         {""}}]
+
+
+rooms = [{"name":"entranceway", "msg":"","egg":True,"basket":False},
+         {"name":"kitchen","msg":"", "egg":True, "basket":False},
+         {"name":"hallway", "msg":"", "egg":True, "basket":False},
+         {"name":"diningroom", "msg":"", "egg":True, "basket":False},
+         {"name":"livingroom", "msg":"", "egg":True, "basket":False}]
+
 bunny = {"location":0,"basket":False,"eggs":0}
 gameover = False
 def msg(room):
@@ -7,6 +13,7 @@ def msg(room):
 		return 'You have entered the ' + room['name']
 	else:
 		return room['msg']
+
 
 def get_choice(room,dir):
 	if dir="HELP":
