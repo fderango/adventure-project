@@ -23,3 +23,10 @@ def get_choice(room,dir):
 
 	else:
 		return choice
+
+def statusupdate(bunny):
+	print("You are in the ", location, ".")
+	if basket == True:
+		print("The basket is in this room! Little Johnny is sleeping right next to it so drop your eggs and get out fast!")
+	else:
+
