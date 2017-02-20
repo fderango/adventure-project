@@ -29,7 +29,18 @@ def get_choice(room,dir):
 	else:
 		return room['directions'][choice]
 
+def statusupdate(bunny):
+	msg(bunny["location"])
+	if not bunny["basket"]:
+		print("You do not have the basket")
+	else:
+		print("You have the basket! Now you can collect eggs")
+		eggmessage = "You have ", bunny['eggs'], "egg(s) in your basket."
+		print(eggmessage)
 
+	# if basket == True:
+	# 	print("The basket is in this room! Little Johnny is sleeping right next to it so drop your eggs and get out fast!")
+	#
 
 def main():
 	while(not gameover):
@@ -43,3 +54,4 @@ def main():
 				print("You got the basket")
 				bunny["basket"] = True
 				room["basket"] = False
+			if room["eggs"]:
